@@ -35,9 +35,6 @@
 <artifactId>h2</artifactId>
 <scope>runtime</scope>
 </dependency>
-
-		
-		
 	</dependencies>
 
 	<build>
