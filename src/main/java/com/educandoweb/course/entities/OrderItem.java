@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import com.educandoweb.course.entities.pk.OrderItemPK;
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
+=======
+>>>>>>> a0e46d0951ebf360ef0f1ce07a46c83403198753
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -16,13 +19,20 @@ public class OrderItem implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
+<<<<<<< HEAD
 	private OrderItemPK id = new OrderItemPK();
+=======
+	private OrderItemPK id;
+>>>>>>> a0e46d0951ebf360ef0f1ce07a46c83403198753
 	
 	private Integer quantity;
 	private Double price;
 	
+<<<<<<< HEAD
 	public OrderItem() {
 	}
+=======
+>>>>>>> a0e46d0951ebf360ef0f1ce07a46c83403198753
 	
 	public OrderItem(Order order, Product product, 
 			Integer quantity, Double price) {
@@ -33,12 +43,19 @@ public class OrderItem implements Serializable{
 		this.price = price;
 	}
 	
+<<<<<<< HEAD
 	@JsonIgnore
+=======
+>>>>>>> a0e46d0951ebf360ef0f1ce07a46c83403198753
 	public Order getOrder() {
 		return id.getOrder();
 	}
 	
+<<<<<<< HEAD
 	public void setOrder(Order order) {
+=======
+	public void serOrder(Order order) {
+>>>>>>> a0e46d0951ebf360ef0f1ce07a46c83403198753
 		id.setOrder(order);
 	}
 	
