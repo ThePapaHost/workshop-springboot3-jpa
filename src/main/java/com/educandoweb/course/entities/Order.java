@@ -2,6 +2,8 @@ package com.educandoweb.course.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.educandoweb.course.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -12,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,24 +31,27 @@ public class Order implements Serializable {
 	
 	
 	private Instant moment;
-	
-	
 	private Integer orderStatus;
-	public Order() {
-	}
-
-
+	
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private User client;
 	
+	@OneToMany(mappedBy = "id.order")
+	private Set<OrderItem> items = new HashSet<>();
+	
+	
+	
+	public Order() {
+	}
 	
 	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
 		super();
 		this.id = id;
 		this.moment = moment;
-		setOrderStatus(orderStatus);
 		this.client = client;
+		setOrderStatus(orderStatus);
+		
 	}
 
 	public Long getId() {
@@ -64,6 +70,14 @@ public class Order implements Serializable {
 		this.moment = moment;
 	}	
 	
+	public User getClient() {
+		return client;
+	}
+
+	public void setClient(User client) {
+		this.client = client;
+	}
+	
 	public OrderStatus getOrderStatus() {
 		return OrderStatus.valueOf(orderStatus);
 	}
@@ -74,14 +88,10 @@ public class Order implements Serializable {
 	}
 		}
 
-	public User getClient() {
-		return client;
+	public Set<OrderItem> getItems(){
+		return items;
 	}
-
-	public void setClient(User client) {
-		this.client = client;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
